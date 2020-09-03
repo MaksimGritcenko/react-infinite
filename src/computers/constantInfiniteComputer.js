@@ -7,27 +7,27 @@ class ConstantInfiniteComputer extends InfiniteComputer {
     return this.heightData * this.numberOfChildren;
   }
 
-  getDisplayIndexStart(windowTop: number): number {
-    return Math.floor(windowTop / this.heightData);
+  getDisplayIndexStart(windowTop: number, itemsInRow: number): number {
+    return (Math.floor(windowTop / this.heightData) * itemsInRow);
   }
 
-  getDisplayIndexEnd(windowBottom: number): number {
-    var nonZeroIndex = Math.ceil(windowBottom / this.heightData);
+  getDisplayIndexEnd(windowBottom: number, itemsInRow: number): number {
+    var nonZeroIndex = (Math.ceil(windowBottom / this.heightData) * itemsInRow - 1);
     if (nonZeroIndex > 0) {
       return nonZeroIndex - 1;
     }
     return nonZeroIndex;
   }
 
-  getTopSpacerHeight(displayIndexStart: number): number {
-    return displayIndexStart * this.heightData;
+  getTopSpacerHeight(displayIndexStart: number, itemsInRow: number): number {
+    return displayIndexStart * this.heightData / itemsInRow;
   }
 
-  getBottomSpacerHeight(displayIndexEnd: number): number {
+  getBottomSpacerHeight(displayIndexEnd: number, itemsInRow: number): number {
     var nonZeroIndex = displayIndexEnd + 1;
     return Math.max(
       0,
-      (this.numberOfChildren - nonZeroIndex) * this.heightData
+      ((this.numberOfChildren - nonZeroIndex) * this.heightData / itemsInRow)
     );
   }
 }

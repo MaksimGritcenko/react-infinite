@@ -37,7 +37,8 @@ function recomputeApertureStateFromOptionsAndScrollTop(
     preloadAdditionalHeight: number,
     infiniteComputer: InfiniteComputer
   },
-  scrollTop: number
+  scrollTop: number,
+  itemsInRow: number
 ): {
   displayIndexStart: number,
   displayIndexEnd: number
@@ -53,8 +54,8 @@ function recomputeApertureStateFromOptionsAndScrollTop(
     );
 
   return {
-    displayIndexStart: infiniteComputer.getDisplayIndexStart(apertureTop),
-    displayIndexEnd: infiniteComputer.getDisplayIndexEnd(apertureBottom)
+    displayIndexStart: infiniteComputer.getDisplayIndexStart(apertureTop, itemsInRow),
+    displayIndexEnd: infiniteComputer.getDisplayIndexEnd(apertureBottom, itemsInRow)
   };
 }
 

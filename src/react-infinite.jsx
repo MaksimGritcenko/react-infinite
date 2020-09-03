@@ -224,7 +224,8 @@ class Infinite extends React.Component<
       newState,
       infiniteHelpers.recomputeApertureStateFromOptionsAndScrollTop(
         newState,
-        utils.getScrollTop()
+        utils.getScrollTop(),
+        this.props.itemsInRow
       )
     );
 
@@ -285,7 +286,8 @@ class Infinite extends React.Component<
     if (hasLoadedMoreChildren) {
       var newApertureState = infiniteHelpers.recomputeApertureStateFromOptionsAndScrollTop(
         this.state,
-        this.utils.getScrollTop()
+        this.utils.getScrollTop(),
+        this.props.itemsInRow
       );
       this.setState(newApertureState);
     }
@@ -398,7 +400,8 @@ class Infinite extends React.Component<
 
     var newApertureState = infiniteHelpers.recomputeApertureStateFromOptionsAndScrollTop(
       this.state,
-      scrollTop
+      scrollTop,
+      this.props.itemsInRow
     );
 
     if (
